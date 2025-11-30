@@ -8,6 +8,9 @@
 #=========
 # Outliers
 #=========
+X <- model.matrix(ajuste)
+n <- nrow(X)
+r <- ncol(X)-1
 resid_ti <- rstudent(ajuste)
 eje.x <- round(quantile(1:n, probs = c(0, 0.5, 1)), 0)
 eje.y <- c(-3,0,3)
@@ -154,3 +157,4 @@ title(ylab="Cuantil observado", line=5, cex.lab=2, cex=1.5)
 puntos.fuera <- sum(sort(resid_ti) < sort(e1) | sort(resid_ti) > sort(e2))
 porc.puntos.fuera <- round(puntos.fuera*100/n,2)
 cat(paste0(porc.puntos.fuera, "% de los puntos se salen de la envolvente simulada\n"))
+
